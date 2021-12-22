@@ -51,11 +51,21 @@ class TodoController extends Controller
     {
         $this->authorize('view',$todo);
 
-        return view('user.todos.edit',compact('todo'));
+       if($todo){
+           return response()->json([
+               'status'=>200,
+               'todo' => $todo,
+
+           ]);
+       }
+
+
+
     }
 
     public function update(Request $request, Todo $todo)
     {
+
         $this->authorize('update',$todo);
 
         $todo->update([
@@ -64,7 +74,11 @@ class TodoController extends Controller
             'status'=>$request->status,
             'completed_at' => $request->status == Todo::STATUS['Completed'] ? now() : null,
         ]);
-        return redirect()->route('todos.index');
+        return response()->json([
+            'status'=>200,
+            'message'=>"Todo Updated Sucessfully",
+        ]);
+        // return response("")
 
     }
 

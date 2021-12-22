@@ -26,7 +26,7 @@
                                     <td>{{ $todo->status }}</td>
                                     <td>{{ $todo->date }}</td>
                                     <td>
-                                        <button onclick="return confirm('Are you sure?') && handleDelete({{ $todo->id }})" class="btn btn-transparent" href="">
+                                        <button onclick="return confirm('Are you sure?') && handleDelete({{$todo->id}})" class="btn btn-transparent">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
@@ -41,20 +41,17 @@
 @endsection
 @push('scripts')
 <script>
-    $(document).ready(function(){
-        function handleDelete(id)
+        function handleDelete(todoId)
         {
             $.ajax({
-            url: "users/todos/" + id,
-            type: 'DELETE',
+            url: `/user/todos/${todoId}/delete`,
+            method: 'DELETE',
             data : { "_token": "{{ csrf_token() }}"},
                 success: function(result){
-                alert('Todo deleted successfully');
+                    alert('Todo deleted successfully');
                 }
             });
         }
-
-    });
 </script>
 
 @endpush

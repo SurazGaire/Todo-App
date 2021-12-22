@@ -35,3 +35,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('users/{user}/todos', [App\Http\Controllers\Admin\UserTodoController::class, 'index'])->name('users.todos.index');
+Route::delete('user/todos/{todo}/delete', [App\Http\Controllers\Admin\UserTodoController::class, 'destroy'])->name('users.todos.destroy');

@@ -31,8 +31,6 @@
                   </div>
                 <button class="btn btn-primary" name="create_todo" style="margin-top:20px">Update</button>
               </form>
-
-
         </div>
     </div>
 </div>
